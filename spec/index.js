@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import supertestPrefix from '../src/supertest-prefix';
+import supertestPrefix from '../src';
 
 describe('supertest-prefix', () => {
   const proxy = supertestPrefix('/api');
