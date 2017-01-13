@@ -1,7 +1,7 @@
 export default function (prefix) {
   return (req) => {
     if (req.url[0] === '/') {
-      req.url = prefix + req.url; // eslint-disable-line
+      req.url = prefix + req.url;
       return req;
     }
 
@@ -11,7 +11,7 @@ export default function (prefix) {
       prefix +
       path.substring(path.indexOf('/'), path.length);
 
-    req.url = protocol + newPath; // eslint-disable-line
+    req.url = protocol + newPath;
     return req;
   };
 }
