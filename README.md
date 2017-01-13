@@ -1,9 +1,50 @@
 [![Build Status](https://travis-ci.org/rodrigowirth/supertest-prefix.svg?branch=master)](https://travis-ci.org/rodrigowirth/supertest-prefix)
 
-## License
+# Supertest Prefix
+An extension to supertest which adds a prefix to the routes
 
-Copyright © 2016 Csaba Tuncsik <csaba.tuncsik@gmail.com>
+## Usage
+```javascript
+import request from 'supertest';
+import supertestPrefix from 'supertest-prefix';
 
-This work is free. You can redistribute it and/or modify it under the
-terms of the Do What The Fuck You Want To Public License, Version 2,
-as published by Sam Hocevar. See [WTFPL](http://www.wtfpl.net) ![WTFPL icon](http://i.imgur.com/AsWaQQl.png) for more details.
+// Creates the prefix
+const prefix = supertestPrefix('/api');
+
+// Uses the proxy
+await request
+  .get('/cars') // Becomes /api/cars
+  .use(proxy)
+  .expect(200);
+
+await request
+  .get('http://localhost:3000/cars') // Becomes http://localhost:3000/api/cars
+  .use(proxy)
+  .expect(200);
+```
+
+## Using with npm 'superagent-defaults'
+https://www.npmjs.com/package/superagent-defaults
+```javascript
+import supertest from 'supertest';
+import defaults from 'superagent-defaults';
+import supertestPrefix from 'supertest-prefix';
+
+// Creates the prefix
+const prefix = supertestPrefix('/api');
+
+// Create a defaults context
+var request = defaults();
+
+// Setup prefix as a default config
+request
+  .use(proxy);
+
+// Use supertest like you always have; the prefix will be applied to each request automatically
+await request
+  .get('/cars')
+  .expect(200);
+```
+
+## Contributors
+Would you like to contribute to this library? Don't be shy! [Contact me](mailto:rodrigowirth90@gmail.com) if you are interested on it.
