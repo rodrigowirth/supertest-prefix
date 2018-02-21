@@ -11,15 +11,15 @@ import supertestPrefix from 'supertest-prefix';
 // Creates the prefix
 const prefix = supertestPrefix('/api');
 
-// Uses the proxy
+// Uses the prefix
 await request
   .get('/cars') // Becomes /api/cars
-  .use(proxy)
+  .use(prefix)
   .expect(200);
 
 await request
   .get('http://localhost:3000/cars') // Becomes http://localhost:3000/api/cars
-  .use(proxy)
+  .use(prefix)
   .expect(200);
 ```
 
@@ -38,7 +38,7 @@ var request = defaults();
 
 // Setup prefix as a default config
 request
-  .use(proxy);
+  .use(prefix);
 
 // Use supertest like you always have; the prefix will be applied to each request automatically
 await request
