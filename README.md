@@ -5,8 +5,10 @@ An extension to supertest which adds a prefix to the routes
 
 ## Usage
 ```javascript
-import request from 'supertest';
+import supertest from 'supertest';
 import supertestPrefix from 'supertest-prefix';
+
+const request = supertest(app);
 
 // Creates the prefix
 const prefix = supertestPrefix('/api');
@@ -34,7 +36,7 @@ import supertestPrefix from 'supertest-prefix';
 const prefix = supertestPrefix('/api');
 
 // Create a defaults context
-var request = defaults();
+var request = defaults(supertest(app));
 
 // Setup prefix as a default config
 request
